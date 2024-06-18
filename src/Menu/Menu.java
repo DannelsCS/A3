@@ -1,7 +1,6 @@
 package Menu;
 
 import Array.Inventario;
-import exemplo.Array;
 import item.Item;
 
 import java.util.Arrays;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        Item itemA = new Item();
+        Item itemB = new Item();
         int comando = 0;
         Inventario inventario = new Inventario();
         while(comando != 5) {
@@ -61,44 +60,64 @@ public class Menu {
                     }
                     break;
                 case 4:
-
-
-                   /* Usar switch case
-
-                   System.out.println("Digite o ID do item que deseja atualizar:");
-                    int idi = teclado.nextInt();
-                    System.out.println("Digite o nome do item:");
-                    String name = teclado.next();
-                    System.out.println("Digite a durabilidade do item:");
-                    int durability = teclado.nextInt();
-                    System.out.println("Digite a quantidade do item:");
-                    int quant = teclado.nextInt();
-                    System.out.println("Digite o peso do item:");
-                    float pes = teclado.nextFloat();
-                    System.out.println("Digite a raridade do item:");
-                    String rar = teclado.next();
-
-
-                    boolean atualizado = itemA.atualizarItem(idi, name, durability, quant, pes, rar);
-*/
-                    if (atualizado) {
-                        System.out.println("\nItem com ID " + idi + " atualizado com sucesso.");
-                    } else {
-                        System.out.println("\nItem com ID " + idi + " n&atilde;o encontrado.");
+                    System.out.println("Qual o ID do item que você deseja editar?");
+                    int ide = teclado.nextInt();
+                    Item itemA = inventario.getLista()[ide];
+                    if (inventario.pesquisar(ide) != -1){
+                        System.out.println("""
+                                Qual atributo você deseja editar?
+                                [1] Nome
+                                [2] Durabilidade
+                                [3] Quantidade
+                                [4] Raridade
+                                [5] Peso
+                                """);
+                        int alternativaEdicao = teclado.nextInt();
+                        switch (alternativaEdicao){
+                            case 1:
+                                System.out.println("Digite o novo nome:");
+                                String a = teclado.next();
+                                itemA.setNome(a);
+                                break;
+                            case 2:
+                                System.out.println("Digite a nova durabilidade:");
+                                int b = teclado.nextInt();
+                                itemA.setDurabilidade(b);
+                                break;
+                            case 3:
+                                System.out.println("Digite a nova quantidade:");
+                                int c = teclado.nextInt();
+                                itemA.setQuantidade(c);
+                                break;
+                            case 4:
+                                System.out.println("Digite a nova Raridade:");
+                                String d = teclado.next();
+                                itemA.setRaridade(d);
+                                break;
+                            case 5:
+                                System.out.println("Digite o novo peso:");
+                                float e = teclado.nextFloat();
+                                itemA.setPeso(e);
+                                break;
+                            default:
+                                System.out.println("\u001B[31m" + "\n Comando Inv&aacute;lido! \n" + "\u001B[0m");
+                                break;
+                        }
+                    }else {
+                        System.out.println("ID não encontrado!");
                     }
-                    System.out.println("Itens atualizados:");
-                    // Exibe os itens novamente ap&oacute;s a atualiza&ccedil;&atilde;o
+                    System.out.println("Lista atualizada:");
                     for (Item item : inventario.getLista2()) {
                         System.out.println(item);
                     }
                     break;
                 case 5:
-                System.out.println("At&eacute; mais!");
+                    System.out.println("At&eacute; mais!");
                     comando = 5;
                     break;
                 default:
-                System.out.println("\u001B[31m" + "\n Comando Inv&aacute;lido! \n" + "\u001B[0m");
-                break;
+                    System.out.println("\u001B[31m" + "\n Comando Inv&aacute;lido! \n" + "\u001B[0m");
+                    break;
             }
 
         }

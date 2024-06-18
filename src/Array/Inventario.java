@@ -1,6 +1,5 @@
 package Array;
 
-import exemplo.Paciente;
 import item.Item;
 
 import java.util.Arrays;
