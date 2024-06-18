@@ -6,18 +6,15 @@ import java.util.Arrays;
 
 public class Inventario {
 
-
     private Item[] lista = new Item[3];
-    private static int contador = 0;
-
+    private static int contador = 1; // Iniciar IDs a partir de 1
 
     public void adicionar(Item item) {
-
-        if (contador == lista.length) {
+        if (contador - 1 == lista.length) {
             lista = listaMaior();
-
         }
-        lista[contador++] = item;
+        item.setId(contador++);
+        lista[contador - 2] = item; // Usar o índice apropriado no array
     }
 
     private Item[] listaMaior() {
@@ -26,9 +23,8 @@ public class Inventario {
         return novo;
     }
 
-
     public int pesquisar(int id) {
-        for (int i = 0; i < contador; i++) {
+        for (int i = 0; i < contador - 1; i++) {
             if (id == lista[i].getId()) {
                 return i;
             }
@@ -37,14 +33,14 @@ public class Inventario {
     }
 
     public Item[] getLista2() {
-        Item[] result = new Item[contador];
-        System.arraycopy(lista, 0, result, 0, contador);
+        Item[] result = new Item[contador - 1];
+        System.arraycopy(lista, 0, result, 0, contador - 1);
         return result;
     }
 
     public Item[] getLista() {
-        Item[] result = new Item[contador];
-        System.arraycopy(lista, 0, result, 0, contador);
+        Item[] result = new Item[contador - 1];
+        System.arraycopy(lista, 0, result, 0, contador - 1);
         return result;
     }
 
@@ -52,13 +48,14 @@ public class Inventario {
     public void removerItem(int id) {
         int index = pesquisar(id);
         if (index != -1) {
-            for (int j = index; j < contador - 1; j++) {
+            for (int j = index; j < contador - 2; j++) {
                 lista[j] = lista[j + 1];
             }
-            lista[--contador] = null;
+            lista[--contador - 1] = null;
         }
+    }
 
-
-
+    public static int getContador() {
+        return contador;
     }
 }

@@ -4,7 +4,7 @@ import Array.Inventario;
 
 public class Item {
     Inventario inventario = new Inventario();
-    private int id = 2;
+    private int id = 1;
     private String nome;
     private int durabilidade;
     private int quantidade;
@@ -26,6 +26,10 @@ public class Item {
     }
 
     public Item(int id) {
+        this.id = id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -85,19 +89,5 @@ public class Item {
     public String toString() {
         return "ID: " + id + ", Nome: " + nome + ", Durabilidade: " + durabilidade + ", Quantidade: " + quantidade +
                 ", Peso: " + peso + ", Raridade: " + raridade;
-    }
-    // Método para atualizar um item pelo ID
-    public boolean atualizarItem() {
-        int index = inventario.pesquisar(id);
-        if (index != -1) {
-            Item item = inventario.getLista()[index];
-            item.setNome(nome);
-            item.setDurabilidade(durabilidade);
-            item.setQuantidade(quantidade);
-            item.setPeso(peso);
-            item.setRaridade(raridade);
-            return true;
-        }
-        return false;
     }
 }

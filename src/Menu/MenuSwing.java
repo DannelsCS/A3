@@ -115,7 +115,8 @@ public class MenuSwing {
         int quantidade = Integer.parseInt(quantidadeField.getText());
         String raridade = raridadeField.getText();
         float peso = Float.parseFloat(pesoField.getText());
-        inventario.adicionar(new Item(0, nome, durabilidade, quantidade, raridade, peso));
+        Item item = new Item(0, nome, durabilidade, quantidade, raridade, peso);
+        inventario.adicionar(item);
         displayArea.setText("Item cadastrado com sucesso!\n");
         clearFields();
     }
@@ -133,15 +134,16 @@ public class MenuSwing {
 
     private void acessarInventario() {
         displayArea.setText("");
-        for (Item item : inventario.getLista()) {
+        for (Item item : inventario.getLista2()) {
             displayArea.append(item.toString() + "\n");
         }
     }
 
     private void editarItem() {
         int id = Integer.parseInt(idField.getText());
-        Item itemA = inventario.getLista()[id];
-        if (itemA != null) {
+        int index = inventario.pesquisar(id);
+        if (index != -1) {
+            Item item = inventario.getLista()[index];
             String[] options = {"Nome", "Durabilidade", "Quantidade", "Raridade", "Peso"};
             String input = (String) JOptionPane.showInputDialog(frame,
                     "Qual atributo você deseja editar?",
@@ -154,23 +156,23 @@ public class MenuSwing {
             switch (input) {
                 case "Nome":
                     String nome = JOptionPane.showInputDialog("Digite o novo nome:");
-                    itemA.setNome(nome);
+                    item.setNome(nome);
                     break;
                 case "Durabilidade":
                     int durabilidade = Integer.parseInt(JOptionPane.showInputDialog("Digite a nova durabilidade:"));
-                    itemA.setDurabilidade(durabilidade);
+                    item.setDurabilidade(durabilidade);
                     break;
                 case "Quantidade":
                     int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Digite a nova quantidade:"));
-                    itemA.setQuantidade(quantidade);
+                    item.setQuantidade(quantidade);
                     break;
                 case "Raridade":
                     String raridade = JOptionPane.showInputDialog("Digite a nova raridade:");
-                    itemA.setRaridade(raridade);
+                    item.setRaridade(raridade);
                     break;
                 case "Peso":
                     float peso = Float.parseFloat(JOptionPane.showInputDialog("Digite o novo peso:"));
-                    itemA.setPeso(peso);
+                    item.setPeso(peso);
                     break;
                 default:
                     break;
