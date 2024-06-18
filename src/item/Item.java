@@ -12,7 +12,7 @@ public class Item {
     private float peso;
     private static int contador = 0;
 
-    public Item(String nome, int durabilidade, int quantidade, String raridade, float peso) {
+    public Item(int i, String nome, int durabilidade, int quantidade, String raridade, float peso) {
         this.nome = nome;
         this.durabilidade = durabilidade;
         this.quantidade = quantidade;

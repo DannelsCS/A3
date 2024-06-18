@@ -3,7 +3,6 @@ package Menu;
 import Array.Inventario;
 import item.Item;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Menu {
@@ -37,7 +36,7 @@ public class Menu {
                     String raridade = teclado.next();
                     System.out.println("Digite o peso do item:");
                     float peso = teclado.nextFloat();
-                    inventario.adicionar(new Item(nome, durabilidade, qtd, raridade, peso));
+                    inventario.adicionar(new Item(0, nome, durabilidade, qtd, raridade, peso));
                     System.out.println("Item cadastrado com sucesso!");
                     break;
                 case 2:
