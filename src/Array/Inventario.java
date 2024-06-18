@@ -2,23 +2,21 @@ package Array;
 
 import item.Item;
 
-import java.util.Arrays;
-
 public class Inventario {
-
     private Item[] lista = new Item[3];
-    private static int contador = 1; // Iniciar IDs a partir de 1
+    private static int contador = 1;
 
     public void adicionar(Item item) {
         if (contador - 1 == lista.length) {
             lista = listaMaior();
         }
-        item.setId(contador++);
-        lista[contador - 2] = item; // Usar o índice apropriado no array
+        item.setId(contador);
+        lista[contador - 1] = item;
+        contador++;
     }
 
     private Item[] listaMaior() {
-        Item[] novo = new Item[lista.length * 2]; // Dobrar o tamanho do array
+        Item[] novo = new Item[lista.length * 2];
         System.arraycopy(lista, 0, novo, 0, lista.length);
         return novo;
     }
@@ -32,10 +30,12 @@ public class Inventario {
         return -1;
     }
 
-    public Item[] getLista2() {
-        Item[] result = new Item[contador - 1];
-        System.arraycopy(lista, 0, result, 0, contador - 1);
-        return result;
+    public Item pesquisarItem(int id) {
+        int index = pesquisar(id);
+        if (index != -1) {
+            return lista[index];
+        }
+        return null;
     }
 
     public Item[] getLista() {
@@ -44,7 +44,6 @@ public class Inventario {
         return result;
     }
 
-    // Método para remover um item pelo ID
     public void removerItem(int id) {
         int index = pesquisar(id);
         if (index != -1) {
@@ -52,6 +51,18 @@ public class Inventario {
                 lista[j] = lista[j + 1];
             }
             lista[--contador - 1] = null;
+        }
+    }
+
+    public void atualizarItem(int id, String nome, int durabilidade, int quantidade, String raridade, float peso) {
+        int index = pesquisar(id);
+        if (index != -1) {
+            Item item = lista[index];
+            item.setNome(nome);
+            item.setDurabilidade(durabilidade);
+            item.setQuantidade(quantidade);
+            item.setRaridade(raridade);
+            item.setPeso(peso);
         }
     }
 

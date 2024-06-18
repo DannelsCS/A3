@@ -1,40 +1,32 @@
 package item;
 
-import Array.Inventario;
-
 public class Item {
-    Inventario inventario = new Inventario();
-    private int id = 1;
+    private int id;
     private String nome;
     private int durabilidade;
     private int quantidade;
     private String raridade;
     private float peso;
-    private static int contador = 0;
 
-    public Item(int i, String nome, int durabilidade, int quantidade, String raridade, float peso) {
+    public Item() {
+        // Construtor padrão
+    }
+
+    public Item(String nome, int durabilidade, int quantidade, String raridade, float peso) {
         this.nome = nome;
         this.durabilidade = durabilidade;
         this.quantidade = quantidade;
         this.raridade = raridade;
         this.peso = peso;
-        id = contador++;
     }
 
-    public Item() {
-        id = contador++;
-    }
-
-    public Item(int id) {
-        this.id = id;
+    // Getters e Setters
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getNome() {
@@ -77,17 +69,14 @@ public class Item {
         this.peso = peso;
     }
 
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int contador) {
-        Item.contador = contador;
-    }
-
     @Override
     public String toString() {
-        return "ID: " + id + ", Nome: " + nome + ", Durabilidade: " + durabilidade + ", Quantidade: " + quantidade +
-                ", Peso: " + peso + ", Raridade: " + raridade;
+        return "Item:" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", durabilidade=" + durabilidade +
+                ", quantidade=" + quantidade +
+                ", raridade='" + raridade + '\'' +
+                ", peso=" + peso;
     }
 }

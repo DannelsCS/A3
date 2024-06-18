@@ -115,7 +115,7 @@ public class MenuSwing {
         int quantidade = Integer.parseInt(quantidadeField.getText());
         String raridade = raridadeField.getText();
         float peso = Float.parseFloat(pesoField.getText());
-        Item item = new Item(0, nome, durabilidade, quantidade, raridade, peso);
+        Item item = new Item(nome, durabilidade, quantidade, raridade, peso);
         inventario.adicionar(item);
         displayArea.setText("Item cadastrado com sucesso!\n");
         clearFields();
@@ -134,7 +134,7 @@ public class MenuSwing {
 
     private void acessarInventario() {
         displayArea.setText("");
-        for (Item item : inventario.getLista2()) {
+        for (Item item : inventario.getLista()) {
             displayArea.append(item.toString() + "\n");
         }
     }
@@ -143,7 +143,7 @@ public class MenuSwing {
         int id = Integer.parseInt(idField.getText());
         int index = inventario.pesquisar(id);
         if (index != -1) {
-            Item item = inventario.getLista()[index];
+            Item item = inventario.pesquisarItem(id);
             String[] options = {"Nome", "Durabilidade", "Quantidade", "Raridade", "Peso"};
             String input = (String) JOptionPane.showInputDialog(frame,
                     "Qual atributo você deseja editar?",

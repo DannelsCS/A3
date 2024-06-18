@@ -1,4 +1,4 @@
-package Menu;
+/*package Menu;
 
 import Array.Inventario;
 import item.Item;
@@ -122,4 +122,4 @@ public class Menu {
         }
         teclado.close();
     }
-}
+}*/
